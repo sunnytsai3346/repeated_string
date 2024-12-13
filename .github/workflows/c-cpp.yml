@@ -8,18 +8,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
       # Step 1: Check out the code
       - name: Checkout code
         uses: actions/checkout@v4
       
+      # Step 2: Debug environment
+      - name: Debug environment
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Listing files:"
+          ls -R  
+      
       # Step 2: Set up dependencies
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake g++ make
+          sudo apt-get install -y cmake g++ make          
       
       # Step 3: Build the project
       - name: Build Project
